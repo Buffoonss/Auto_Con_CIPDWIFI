@@ -1,0 +1,59 @@
+##CIDP校园网自动登录脚本
+
+import requests
+import time
+import sys
+import datetime
+
+f = open('a.log', 'a')
+sys.stdout = f
+sys.stderr = f
+ISOTIMEFORMAT = '%Y-%m-%d %H:%M:%S'
+theTime = datetime.datetime.now().strftime(ISOTIMEFORMAT)
+key = {'DDDDD': '',  # 校园网账号
+       'upass': '',  # 校园网密码
+       '0MKKey': '%C1%AC%BD%D3%CD%F8%C2%E7'}
+url = 'http://10.252.251.251/'
+
+def con_cidp():
+    r = requests.post(url, data=key)
+    return r.text
+
+def test_authweb():
+    try:
+        requests.get(url,
+                     timeout=0.5)
+        return 1
+    except:
+        return 0
+
+def test_baide():
+    try:
+        response = requests.get('http://baidu.com/',
+                                timeout=0.5)
+        if "www.baidu.com" in response.text:
+            return 1
+    except:
+        return 0
+
+with open("con_cidp.log", "a") as f:
+    f.write('\n'.join(items))
+    f.close()
+
+if test_baide() == 1:
+    print(theTime + 'Test OK!')
+    sys.exit()
+
+if test_authweb() == 0:
+    print(theTime + 'Not AuthWeb!')
+    sys.exit()
+
+res = con_cidp()
+
+while "信息返回窗" in res:
+    print(theTime + 'NO!')
+    time.sleep(3)
+    res = con_cidp()
+else:
+    print(theTime + 'OK!')
+    sys.exit()
