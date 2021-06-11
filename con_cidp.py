@@ -5,7 +5,7 @@ import time
 import sys
 import datetime
 
-f = open('a.log', 'a')
+f = open('con_cidp.log', 'a')
 sys.stdout = f
 sys.stderr = f
 
@@ -39,19 +39,19 @@ def test_baide():
         return 0
 
 if test_baide() == 1:
-    print(theTime + 'Test OK!')
+    print(theTime + '\nTest OK!')
     sys.exit()
 
 if test_authweb() == 0:
-    print(theTime + 'Not AuthWeb!')
+    print(theTime + '\nNot AuthWeb!')
     sys.exit()
 
 res = con_cidp()
 
 while "信息返回窗" in res:
-    print(theTime + 'NO!')
+    print(theTime + '\nNO!')
     time.sleep(3)
     res = con_cidp()
 else:
-    print(theTime + 'OK!')
+    print(theTime + '\nOK!')
     sys.exit()
