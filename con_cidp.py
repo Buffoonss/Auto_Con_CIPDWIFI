@@ -8,8 +8,10 @@ import datetime
 f = open('a.log', 'a')
 sys.stdout = f
 sys.stderr = f
+
 ISOTIMEFORMAT = '%Y-%m-%d %H:%M:%S'
 theTime = datetime.datetime.now().strftime(ISOTIMEFORMAT)
+
 key = {'DDDDD': '',  # 校园网账号
        'upass': '',  # 校园网密码
        '0MKKey': '%C1%AC%BD%D3%CD%F8%C2%E7'}
@@ -35,10 +37,6 @@ def test_baide():
             return 1
     except:
         return 0
-
-with open("con_cidp.log", "a") as f:
-    f.write('\n'.join(items))
-    f.close()
 
 if test_baide() == 1:
     print(theTime + 'Test OK!')
