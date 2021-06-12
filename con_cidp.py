@@ -1,4 +1,4 @@
-##CIDP校园网自动登录脚本
+# CIDP校园网自动登录脚本
 
 import requests
 import time
@@ -17,9 +17,11 @@ key = {'DDDDD': '',  # 校园网账号
        '0MKKey': '%C1%AC%BD%D3%CD%F8%C2%E7'}
 url = 'http://10.252.251.251/'
 
+
 def con_cidp():
     r = requests.post(url, data=key)
     return r.text
+
 
 def test_authweb():
     try:
@@ -29,6 +31,7 @@ def test_authweb():
     except:
         return 0
 
+
 def test_baide():
     try:
         response = requests.get('http://baidu.com/',
@@ -37,6 +40,7 @@ def test_baide():
             return 1
     except:
         return 0
+
 
 if test_baide() == 1:
     print(theTime + '\nTest OK!')
