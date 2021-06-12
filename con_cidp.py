@@ -1,9 +1,10 @@
 # CIDP校园网自动登录脚本
 
-import requests
-import time
-import sys
 import datetime
+import sys
+import time
+
+import requests
 
 f = open('con_cidp.log', 'a')
 sys.stdout = f
