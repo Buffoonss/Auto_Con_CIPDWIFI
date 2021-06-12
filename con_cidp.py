@@ -48,10 +48,10 @@ if test_authweb() == 0:
 
 res = con_cidp()
 
-while "信息返回窗" in res:
+while 1:
+    if "登录成功窗" in res:
+        print(theTime + '\nOK!')
+        sys.exit()
     print(theTime + '\nNO!')
     time.sleep(3)
     res = con_cidp()
-else:
-    print(theTime + '\nOK!')
-    sys.exit()
